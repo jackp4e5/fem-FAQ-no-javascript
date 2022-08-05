@@ -1,0 +1,112 @@
+
+@use 'base/variables' as v;
+@use 'base/mixin' as m;
+
+.wrapper{
+    position: relative; 
+    grid-gap: 20px;
+    background-color: hsl(0deg 0% 100%);
+    background-image: url(../img/bg-pattern-mobile.svg);
+    background-repeat: no-repeat;
+    background-position: 43% 0;
+    background-size: 250px;
+    border-radius: 30px;
+    grid-template-rows: 1fr 4fr;
+    padding: 0 30px 40px 30px;
+    width: 90%;
+
+    @include m.tablet{ 
+      background-image: url(../img/bg-pattern-desktop.svg);
+      background-position: -387px  -198px;
+      background-size: 761px;
+      display: grid;
+      grid-template-rows: unset;
+      grid-template-columns: repeat(2,1fr);
+      max-width: 880px; 
+      padding: 0; 
+     }
+     &__image--inner{
+      background-image: url(../img/illustration-woman-online-desktop.svg);
+      background-position: -78px 62px;
+      background-repeat: no-repeat;
+      background-size: 460px;
+      height: 100%;
+    }
+}
+.box{
+  display: none;
+  @include m.tablet{ 
+    display: block;
+    bottom: 130px;
+    left: -95px;
+    position: absolute;
+   }
+}
+.box2{
+  position: absolute;
+  bottom: 85%;
+  left: 15%;
+  width: 230px;
+  @include m.tablet{ 
+    display: none;
+   }
+}
+// new code
+.accordion{
+@include m.tablet{ 
+  padding: 55px 70px 60px 0;; 
+ }
+  &__title{
+    font-size: 2em;
+    text-align: center;
+    margin-block:130px 20px ;
+    @include m.tablet{ 
+      text-align: left;
+       margin:0; 
+     }
+  }
+  &__questions{
+    padding-block: 20px;
+    border-bottom: 1px solid ,transparentize(v.$blue2, 0.9%);
+
+  }
+  &__radio{
+    display: none;
+    transition: all .3s ease;
+  }
+  &__question{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 400;
+    color: v.$blue2;
+    &:hover{
+      color: v.$orenge;
+      cursor: pointer;
+    }
+  }
+  &__arrow{
+    margin-right: 10px;
+    transition: all .3s ease-out;
+  }
+  &__answer{
+    font-size: 12px;
+    color: v.$blue2;
+    height: 0;
+    overflow: hidden;
+    padding-right: 21px;
+    transition: all .3s ease;
+  }
+}
+.accordion__radio:checked + .accordion__question{
+  font-weight: 700;
+  color:  v.$darkBlue;
+}
+.accordion__radio:checked ~ .accordion__answer{
+  height: 45px;
+  margin-top: 10px;
+}
+.accordion__radio:checked + .accordion__question > .accordion__arrow{
+  transform: rotate(180deg);
+}
