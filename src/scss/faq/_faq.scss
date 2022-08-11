@@ -72,8 +72,8 @@
   }
   &__radio{
     display: none;
-    transition: all .3s ease;
   }
+  
   &__question{
     display: flex;
     justify-content: space-between;
@@ -99,14 +99,18 @@
     transition: all .3s ease;
   }
 }
-.accordion__radio:checked + .accordion__question{
-  font-weight: 700;
-  color:  v.$darkBlue;
-}
-.accordion__radio:checked ~ .accordion__answer{
-  height: 45px;
-  margin-top: 10px;
-}
-.accordion__radio:checked + .accordion__question > .accordion__arrow{
-  transform: rotate(180deg);
+.accordion__radio:checked {
+  & + .accordion__question{
+    font-weight: 700;
+    color:  v.$darkBlue;
+    
+    & > .accordion__arrow{
+      transform: rotate(180deg);
+    }
+  }
+  
+  & ~ .accordion__answer{
+    height: 45px;
+    margin-top: 10px;
+  }
 }
